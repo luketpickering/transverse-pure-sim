@@ -1,8 +1,8 @@
 
-.PHONY: utils Neut2RooTracker GiBUUToStdHep\
+.PHONY: cpp11test.exe utils Neut2RooTracker GiBUUToStdHep\
  plotting ProcessRooTrackerToTransversityVariables
 
-all: utils Neut2RooTracker GiBUUToStdHep\
+all: cpp11test.exe utils Neut2RooTracker GiBUUToStdHep\
 	plotting ProcessRooTrackerToTransversityVariables
 	@echo ""
 	@echo "*********************************************************************"
@@ -13,6 +13,11 @@ all: utils Neut2RooTracker GiBUUToStdHep\
 
 clean: utils_clean Neut2RooTracker_clean GiBUUToStdHep_clean\
  plotting_clean ProcessRooTrackerToTransversityVariables_clean
+
+cpp11test.exe:
+	echo "int main(){}" > cpp11test.cxx
+	$(CXX) -std=c++11 cpp11test.cxx -o $@
+	rm cpp11test.{cxx,exe}
 
 utils:
 	cd utils && $(MAKE)
