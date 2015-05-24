@@ -1,6 +1,12 @@
 #!/bin/sh
 
-DIRSTOADD="./generators/neut/neut2rootracker ./generators/GiBUU ./plotting ./transverse-variable-tree-generation/all"
+if ! echo "${BASH_SOURCE}" | grep --silent "/"; then
+  LCDIR=$(readlink -f $PWD)
+else
+  LCDIR=$(readlink -f ${BASH_SOURCE%/*})
+fi
+
+DIRSTOADD="${LCDIR}/generators/neut/neut2rootracker ${LCDIR}/generators/GiBUU ${LCDIR}/plotting ${LCDIR}/transverse-variable-tree-generation/all"
 
 CPWD=$PWD
 

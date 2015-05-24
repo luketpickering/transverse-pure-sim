@@ -32,7 +32,7 @@ all: $(TARGET)
 	mv $(UTILSDEPSO) GiRooTracker.so $(LDIR)/
 
 $(UTILSDEPSO):
-	ln -s $(UTILSLOC)/lib/$@ $@
+	ln -s `readlink -f $(UTILSLOC)/lib/$@` $@
 
 $(TARGET): $(TARGETSRC) $(UTILSDEPSO) GiRooTracker.so
 	$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) -I$(UTILSLOC) $^
