@@ -30,3 +30,9 @@
 # Root dictionaries
 *_dict.h
 *_dict.cxx
+
+#Root File
+.root
+
+#Diffs
+.diff
