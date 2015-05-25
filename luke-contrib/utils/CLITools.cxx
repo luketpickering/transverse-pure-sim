@@ -51,7 +51,7 @@ bool GetOpts(){
   for(auto arg_it = std::next(Args.cbegin());
     arg_it < Args.cend(); std::advance(arg_it,1)){
 
-    if(skipNextArg){ continue; } //Allows args with values
+    if(skipNextArg){ skipNextArg = false; continue; } //Allows args with values
 
     std::string const & arg = *arg_it;
 
@@ -77,6 +77,7 @@ bool GetOpts(){
 
       } else {
         if(!opt.CallBack("")){ //C++11 lambdas cant have default arguments
+          std::cout << "Invalid option: " << opt.LongName << std::endl;
           return false;
         }
       }
