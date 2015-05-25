@@ -153,6 +153,7 @@ int GiBUUToStdHep(){
   outFile->Close();
   delete outRooTracker;
   ifs.close();
+  return 0;
 }
 
 void SetOpts(){
