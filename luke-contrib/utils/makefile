@@ -2,7 +2,7 @@ CXX := g++
 
 LDIR :=lib
 
-CXXFLAGS := -fPIC $(ROOTCFLAGS) -g -std=c++11
+CXXFLAGS := -fPIC $(ROOTCFLAGS) -g -std=c++11 -Wall
 LDFLAGS := $(ROOTLDFLAGS) -Wl,-rpath=.
 
 TOBJS := CLITools.cxx PureGenUtils.cxx
