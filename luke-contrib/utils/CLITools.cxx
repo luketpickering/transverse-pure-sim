@@ -10,7 +10,7 @@ std::vector<std::string> Args;
     HasVal = false;
     Required = false;
     Used = false;
-    CallBack = [](std::string const &) -> bool {};
+    CallBack = [](std::string const &) -> bool { return false; };
     Default = [](){};
   }
 

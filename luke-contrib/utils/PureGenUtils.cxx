@@ -12,7 +12,7 @@ long MakeNuclearPDG(int Z, int A){
 STR2INT_ERROR str2int (long &i, char const *s, int base) {
   char *end;
   long  l;
-  errno;
+  (void)errno;
   l = strtol(s, &end, base);
   if ((errno == ERANGE && l == LONG_MAX) || l > LONG_MAX) {
       return STRINT_OVERFLOW;
