@@ -1,0 +1,31 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Card File
+scopeName: text.card
+fileTypes: [.card]
+uuid: 9be3c69d-9f8e-408f-ae2a-cd004f137810
+
+patterns:
+- comment: Not a comment
+  name: constant.numeric.nd280_parameters
+  match: '(\bC|!)-+'
+  captures:
+    '1': {name: entity.other.attribute-name.class.card}
+    '2': {name: constant.numeric.nd280_parameters}
+- comment: Not a comment
+  name: entity.other.attribute-name.class.card
+  match: '^(C)(C+)$'
+  captures:
+    '1': {name: entity.other.attribute-name.class.card}
+    '2': {name: constant.numeric.nd280_parameters}
+- comment: Comment
+  name: entity.tag.card
+  match: '(.*?)(\bC|!)(.*)'
+  captures:
+    '1': {name: variable.parameter.card}
+    '2': {name: entity.other.attribute-name.class.card}
+    '3': {name: comment.section.card}
+- comment: Not a comment
+  name: variable.parameter.card
+  match: '.*'
+...

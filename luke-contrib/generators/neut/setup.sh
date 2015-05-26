@@ -20,8 +20,8 @@ neut2rootracker."
 fi
 
 if ! [[ ":$PATH:" == *":${SETUPDIR}/bin:"* ]]; then
-  export PATH=${SETUPDIR}/bin:$PATH
+  export PATH=${SETUPDIR}/neut2rootracker/bin:$PATH
 fi
 if ! [[ ":$LD_LIBRARY_PATH:" == *":${SETUPDIR}/lib:"* ]]; then
-  export LD_LIBRARY_PATH=${SETUPDIR}/lib:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=${SETUPDIR}/neut2rootracker/lib:$LD_LIBRARY_PATH
 fi
