@@ -199,11 +199,11 @@ C Nucleon rescattering
 C
 C NUCRES-RESCAT  1: on (default) 0: off
 C
-NUCRES-RESCAT 1
+NUCRES-RESCAT 0
 C
 C NUCRES-XNUCFACT  cross-section factor to study uncertainty default = 1.
 C
-NUCRES-FACT 1.
+NUCRES-FACT 0.
 C
 C
 C

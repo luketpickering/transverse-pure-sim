@@ -33,7 +33,7 @@ C EVCT-INMEV  : flag for histograms in MeV
 C               (MeV => 1, GeV => 0)
 C
 EVCT-MPV 1
-EVCT-PV  600.
+EVCT-PV  4000.
 CEVCT-MPV 2
 CEVCT-PV  50.  1000.
 C

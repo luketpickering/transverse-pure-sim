@@ -267,7 +267,7 @@ C  Select Coherent pion model (Rein & Sehgal=0(default), Kartavtsev et al.=1
 CNEUT-COHEPI  0
 C
 C  CCQE Axial Mass (For simulation, must be set to: 1.01, 1.11, 1.21{default}. 1.31)
-NEUT-MAQE 1.21
+NEUT-MAQE 1.01
 C
 C  CCQE Vector Mass (Default: 0.84)
 CNEUT-MVQE 0.84
