@@ -55,9 +55,10 @@ bool GetOpts(){
 
     std::string const & arg = *arg_it;
 
+    bool found = false;
     for(auto &opt : OptSpec){
       if(!opt.IsOpt(arg)) { continue; }
-
+      found = true;
       if(opt.HasVal){
         skipNextArg = true;
         auto next_it = std::next(arg_it);
@@ -82,6 +83,10 @@ bool GetOpts(){
         }
       }
       opt.Used = true;
+    }
+    if(!found){
+      std::cout << "Unknown Option: " << arg << std::endl;
+      return false;
     }
   }
   bool AllGood = true;

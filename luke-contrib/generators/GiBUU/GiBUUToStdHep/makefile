@@ -17,7 +17,7 @@ ROOTLDFLAGS := `$(RC) --libs --glibs`
 CXXFLAGS := -fPIC $(ROOTCFLAGS) -g -std=c++11 -Wall
 LDFLAGS := $(ROOTLDFLAGS) -Wl,-rpath=.
 
-UTILSLOC :=../../utils
+UTILSLOC :=../../../utils
 UTILSDEPSO :=libPureGenUtils.so
 
 .PHONY: all clean
@@ -32,6 +32,7 @@ all: $(TARGET)
 	mv $(UTILSDEPSO) GiRooTracker.so $(LDIR)/
 
 $(UTILSDEPSO):
+	rm -f $@
 	ln -s `readlink -f $(UTILSLOC)/lib/$@` $@
 
 $(TARGET): $(TARGETSRC) $(UTILSDEPSO) GiRooTracker.so

@@ -9,8 +9,8 @@ else
 fi
 
 if ! [[ ":$PATH:" == *":${SETUPDIR}/bin:"* ]]; then
-  export PATH=${SETUPDIR}/bin:$PATH
+  export PATH=${SETUPDIR}/GiBUUToStdHep/bin:$PATH
 fi
 if ! [[ ":$LD_LIBRARY_PATH:" == *":${SETUPDIR}/lib:"* ]]; then
-  export LD_LIBRARY_PATH=${SETUPDIR}/lib:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=${SETUPDIR}/GiBUUToStdHep/lib:$LD_LIBRARY_PATH
 fi

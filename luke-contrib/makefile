@@ -24,7 +24,7 @@ utils:
 Neut2RooTracker: utils
 	cd generators/neut/neut2rootracker && $(MAKE)
 GiBUUToStdHep: utils
-	cd generators/GiBUU && $(MAKE)
+	cd generators/GiBUU/GiBUUToStdHep && $(MAKE)
 plotting:
 	cd plotting && $(MAKE)
 ProcessRooTrackerToTransversityVariables: utils
@@ -35,7 +35,7 @@ utils_clean:
 Neut2RooTracker_clean:
 	cd generators/neut/neut2rootracker && $(MAKE) clean
 GiBUUToStdHep_clean:
-	cd generators/GiBUU && $(MAKE) clean
+	cd generators/GiBUU/GiBUUToStdHep && $(MAKE) clean
 plotting_clean:
 	cd plotting && $(MAKE) clean
 ProcessRooTrackerToTransversityVariables_clean:
