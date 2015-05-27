@@ -110,7 +110,7 @@ void SayRunLike(){
   for(auto const & opt: OptSpec){
     if(opt.Required){
       std::cout << " " << opt.ShortName
-        << " " << opt.ValueIdent << std::flush;
+        << " " << (opt.HasVal?opt.ValueIdent:std::string("")) << std::flush;
     }
   }
   for(auto const & opt: OptSpec){
