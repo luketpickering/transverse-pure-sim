@@ -1,0 +1,37 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: GiBUU Job file
+scopeName: text.gibuujob
+fileTypes: [.job]
+uuid: b7645ac5-4c52-4c3d-aeb6-73c15c9934d6
+
+patterns:
+- comment: Comment line
+  name: constant.numeric.gibuujob
+  match: '(\bC|!)[\-\*#=]+'
+  captures:
+    '1': {name: entity.other.attribute-name.class.gibuujob}
+    '2': {name: constant.numeric.gibuujob}
+- comment: Begin namelist
+  name: entity.other.attribute-name.class.gibuujob
+  match: '^(&)(.*)$'
+  captures:
+    '1': {name: constant.numeric.gibuujob}
+    '2': {name: entity.other.attribute-name.class.gibuujob}
+- comment: End namelist
+  name: constant.numeric.gibuujob
+  match: '^\/$'
+- comment: Comment
+  name: entity.tag.gibuujob
+  match: '(.*?)(\bC|!)(.*)'
+  captures:
+    '1': {name: variable.parameter.gibuujob}
+    '2': {name: entity.other.attribute-name.class.gibuujob}
+    '3': {name: comment.section.gibuujob}
+- comment: Line of stars
+  name: constant.numeric.gibuujob
+  match: '^\**$'
+- comment: Default, probably an option
+  name: variable.parameter.gibuujob
+  match: '.*'
+...
