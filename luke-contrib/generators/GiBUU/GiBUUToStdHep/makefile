@@ -23,13 +23,14 @@ UTILSDEPSO :=libPureGenUtils.so
 .PHONY: all clean
 
 all: $(TARGET)
+	mkdir -p $(BDIR) $(LDIR)
+	mv $(TARGET) $(BDIR)/
+	ln -s `readlink -f ../CountGiBUUEvents`  $(BDIR)/CountGiBUUEvents
+	mv $(UTILSDEPSO) GiRooTracker.so $(LDIR)/
 	@echo ""
 	@echo "*********************************************************************"
 	@echo "Success. Built GiBUUToStdHep."
 	@echo "*********************************************************************"
-	mkdir -p $(BDIR) $(LDIR)
-	mv $(TARGET) $(BDIR)/
-	mv $(UTILSDEPSO) GiRooTracker.so $(LDIR)/
 
 $(UTILSDEPSO):
 	rm -f $@

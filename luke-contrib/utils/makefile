@@ -14,12 +14,12 @@ TARGET := libPureGenUtils.so
 
 all: tests
 	./UtilsTests.exe
+	mkdir -p $(LDIR)
+	mv $(TARGET) $(LDIR)
 	@echo ""
 	@echo "*********************************************************************"
 	@echo "Success. Built Utils."
 	@echo "*********************************************************************"
-	mkdir -p $(LDIR)
-	mv $(TARGET) $(LDIR)
 
 tests: UtilsTests.cxx $(TOBJH) $(TOBJS) $(TARGET)
 	$(CXX) -o UtilsTests.exe $(CXXFLAGS) $(LDFLAGS) $(TARGET) UtilsTests.cxx
