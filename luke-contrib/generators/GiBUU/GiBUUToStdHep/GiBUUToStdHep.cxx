@@ -23,6 +23,7 @@ long MaxEntries;
 int Verbosity = 0;
 
   int GiBUUToPDG(int GiBUUCode, double GiBUUCharge){
+    //https://gibuu.hepforge.org/trac/wiki/ParticleIDs
     switch(GiBUUCode){
       case 1:{
         return (GiBUUCharge>0)?2212:2112;
@@ -53,11 +54,15 @@ int Verbosity = 0;
   }
 
   int GiBUU2NeutReacCode(int GiBUUCode){
+    //1=QE, 2-31=res ID, 32,33=1pi, 34=DIS, 35,36=2p2h, 37=2pi
+    //From https://gibuu.hepforge.org/trac/wiki/LesHouches
     if(GiBUUCode==1) { return 1; } // QES
-    if(GiBUUCode >= 2 && GiBUUCode <= 31){ return 11; } //Delta resonance
+
+    //How best to translate this to a specific NEUT code.
+    if(GiBUUCode >= 2 && GiBUUCode <= 31){ return 11; } //CCResonance
     if(GiBUUCode == 34){ return 26; } //DIS
-    if(GiBUUCode == 35 || GiBUUCode == 36){ return 2; } // MEC/2p-2h
-    if(GiBUUCode == 37){ return 21; } //CCCoh
+    if((GiBUUCode == 35) || (GiBUUCode == 36)){ return 2; } // MEC/2p-2h
+    if(GiBUUCode == 37){ return 21; } //CCCoh?
     if(Verbosity>=1){
       std::cout << "[WARN]: Missed a GiBUU reaction code: " << GiBUUCode
         << std::endl;
