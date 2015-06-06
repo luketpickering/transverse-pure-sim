@@ -1,5 +1,5 @@
 # number of protons
-nucleus_p	    = 8
+nucleus_p = 18
 
 # number of neutrons
-nucleus_n           = 8
+nucleus_n = 22

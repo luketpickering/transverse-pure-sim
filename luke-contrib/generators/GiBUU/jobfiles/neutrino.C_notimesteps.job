@@ -116,7 +116,7 @@
 
 ! file: code/init/lowElectron/lepton2p2h.f90
 &lepton2p2h
-    ME_Version=4                    ! This is model-II from "Lalakulich Gallmeister Mosel PRC86(2012)014614" ! model-I corresponds to ME_Version=4
+    ME_Version=8                    ! This is model-II from "Lalakulich Gallmeister Mosel PRC86(2012)014614" ! model-I corresponds to ME_Version=4
     ME_Norm_QE=1.0,1.0,1.0          !
 /
 
@@ -252,7 +252,7 @@
 &input
   numEnsembles=1250               ! for C12 you can use 4000, for heavier nuclei should be lower; decrease it if there are problems with memory,
   eventtype=5                     ! 5=neutrino, 200=simple transport of a given particle
-  numTimeSteps=100                ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
+  numTimeSteps=0                ! the distance numTimeSteps*delta_T (100*0.2=20 fm in this example) should significantly exceed the radius of the target nucleus
   delta_T=0.2
   fullEnsemble=.true.
   localEnsemble=.true.
@@ -261,7 +261,7 @@
   printParticleVectors=.false.
   freezeRealParticles=.true.
   LRF_equals_CALC_frame=.true.          !if .false.: no offshelltransport possible
-  path_To_Input='/vols/t2k/software/LukesGenerators/GiBUU/buuinput'
+   path_To_Input='/vols/t2k/software/LukesGenerators/GiBUU/buuinput'
 /
 
 ! file: code/density/density.f90

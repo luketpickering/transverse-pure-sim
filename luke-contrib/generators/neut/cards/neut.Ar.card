@@ -48,12 +48,12 @@ C
 C NUMBNDN : total number of neutron
 C           (e.g. CH => 6, H2O => 8, Ar => 22, Fe => 30)
 C
-NEUT-NUMBNDN 6
+NEUT-NUMBNDN 22
 C
 C NUMBNDP : total number of bound proton
 C           (e.g. CH => 6, H2O => 8, Ar => 18, Fe => 26)
 C
-NEUT-NUMBNDP 6
+NEUT-NUMBNDP 18
 C
 C NUMFREP : total number of free proton
 C           (e.g. CH => 1, H2O => 2, Ar => 0, Fe => 0)
@@ -63,7 +63,7 @@ C
 C NUMATOM : atomic number of atom heavier than hydrogen
 C           (e.g. CH => 12, H2O =>16, Ar => 40, Fe => 56)
 C
-NEUT-NUMATOM 12
+NEUT-NUMATOM 40
 C
 CNEUT-PFSURF 0.225
 CNEUT-PFMAX  0.225
@@ -199,11 +199,11 @@ C Nucleon rescattering
 C
 C NUCRES-RESCAT  1: on (default) 0: off
 C
-NUCRES-RESCAT 0
+NUCRES-RESCAT 1
 C
 C NUCRES-XNUCFACT  cross-section factor to study uncertainty default = 1.
 C
-NUCRES-FACT 0.
+NUCRES-FACT 1.
 C
 C
 C

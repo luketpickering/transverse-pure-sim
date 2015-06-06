@@ -106,7 +106,7 @@
 ! file: code/init/neutrino/neutrinoXsection.f90
 &nl_SigmaMC
     MC_xmax=2.0   ! to get QE peak in nuclei, where Bjorken_x can be larger than 1
-    enu=1.0
+    enu=0.6
 /
 
 
