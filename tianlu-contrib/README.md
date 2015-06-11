@@ -3,9 +3,7 @@ Date: June 6 2015
 Email: tianlu.yuan [at] colorado.edu
 
 # Instructions for NEUT installation
-Probably outdated instructions [here](http://www.t2k.org/asg/xsec/niwgdocs/neut/install_neut). General guideline, need CERNLIB, need to set up paths to CERNLIB and modify script `NEUT_ROOT/src/neutsmpl/EnvMakeneutsmpl` before sourcing and running the corresponding make script
-
-[NEUT notes](http://www.t2k.org/asg/xsec/niwgdocs/neut/NeutDoc)
+Probably outdated instructions [here](http://www.t2k.org/asg/xsec/niwgdocs/neut/install_neut). General guideline, need CERNLIB, need to set up paths to CERNLIB and modify script `NEUT_ROOT/src/neutsmpl/EnvMakeneutsmpl` before sourcing and running the corresponding make script. See [NEUT notes](http://www.t2k.org/asg/xsec/niwgdocs/neut/NeutDoc) and [setup script](setup.sh).
 
 # Instructions for GENIE installation
 Tom Dealtry has written a nice python script that installs all prereqs for GENIE and GENIE itself.  It is located in the `nd280Computing` directory in the T2K Repository under `GENIE_install_scripts`.
@@ -33,9 +31,12 @@ When running GENIE, gevgen may complain about a missing file in LHAPATH. From th
 Also requires pythia6 enabled ROOT with libPythia6.so in `root/lib/`, and then root must be configured as `./configure --with-pythia6-libdir=$PWD/lib`. If there's an undefined reference error to some gfortran variables, must add `-lgfortran` to Makefile before `-lPythia6`.
 
 ## Word of warning about gfortran
-It seems that nuwro requires a libPythia6.so that is linked to libgfortran.so.1 which is bundled with gcc-4.1.2 (default in SL5). However, GiBUU requires a more up-to-date version of gcc, and Luke's utilities packages also require gcc-4.7+ since they have C++11 specs. These have replaced libgfortran.so.1 with libgfortran.so.3 and any attempts to compile nuwro with a pythia6 library linked to this version of libgfortran will result in `undefined symbol: _gfortran_...` errors. The current workaround is to compile pythia6 with gcc-4.1.2 so that it links to the older version of libgfortran. Then use gcc-4.7+ to compile the generators themselves.
+It seems that nuwro requires a libPythia6.so that is linked to libgfortran.so.1 which is bundled with gcc-4.1.2 (default in SL5). However, GiBUU requires a more up-to-date version of gcc, and Luke's utilities packages also require gcc-4.7+ since they have C++11 specs. These have replaced libgfortran.so.1 with libgfortran.so.3 and any attempts to compile nuwro with a pythia6 library linked to this version of libgfortran will result in `undefined symbol: _gfortran_...` errors (pythia6 itself will still compile fine though). The current workaround is to compile pythia6 with gcc-4.1.2 so that it links to the older version of libgfortran. Then use gcc-4.7+ to compile the generators themselves.
 
 I've also noticed that this occurs with some of the external packages (e.g. lhapdf) will fail similarly when compiled with gcc-4.8.1. May be related to this NASA [issue](http://heasarc.gsfc.nasa.gov/lheasoft/linux.html)?
+
+# Instructions for GiBUU installation
+GiBUU is probably the simplest to build. [Directions](https://gibuu.hepforge.org/trac/wiki/svn) for getting the src are online. Then just do `make` and it should work if you have an updated version of gcc. I know gcc-4.1.2 doesn't work. To clean you have to do `make renew` instead of `make clean`.
 
 # Analyzing outputs
 The GENIE output is by default in a GHEP format which requires a lot of native GENIE classes in order to be able to read it. There is a utility that ships with GENIE `gntpc` that can convert the native GENIE into a rooTracker or other summary format. Usage is as `gntpc -i ghep.file.root -f output.format (gst, rootracker, etc)`.
