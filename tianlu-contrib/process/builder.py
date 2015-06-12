@@ -26,8 +26,8 @@ class Builder(object):
         self.nevents = 10000
         self.nupdg = 14
         self.nupgev = 0.6
-        self.tgt = ELEMENTS[6]
         self.runnum = 0
+        self.tgt = ELEMENTS[6]
         self.uniquepath = os.path.join('targets', self.tgt.symbol)
 
 
