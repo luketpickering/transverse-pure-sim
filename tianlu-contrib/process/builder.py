@@ -15,20 +15,24 @@ PACKAGE_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class Builder(object):
     def __init__(self):
-        """ Default values:
+        """Default values:
         nevents: 1e4
         nupdg:14
         nupgev: 0.6
         tgt: Carbon
         runnum: 0
-        uniquepath: targets/C
+        category: ['targets', 'C']
+
+        category defines a unique list of strings that can be used to
+        form the output directory, as well as for naming the output
+        scripts/cards
         """
         self.nevents = 10000
         self.nupdg = 14
         self.nupgev = 0.6
         self.runnum = 0
         self.tgt = ELEMENTS[6]
-        self.uniquepath = os.path.join('targets', self.tgt.symbol)
+        self.category = ['targets', self.tgt.symbol]
 
 
     def _outdir(self, generator):
@@ -37,7 +41,7 @@ class Builder(object):
         """
         return os.path.join(directories.GENERATORS_STORE,
                             generator,
-                            self.uniquepath)
+                            *os.path.join(self.category))
 
 
     def build_genie(self):
@@ -46,7 +50,9 @@ class Builder(object):
         outdir = self._outdir('genie')
         out_script = os.path.join(outdir,
                                   '.scripts/',
-                                  'genie_script_{0}.sh'.format(self.runnum))
+                                  'genie_script_{0}_{1}.sh'.
+                                  format('_'.join(self.category),
+                                         self.runnum))
 
         utils.make_dirs_if_needed(os.path.dirname(out_script))
         utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
@@ -73,9 +79,13 @@ class Builder(object):
         out_card = os.path.join(outdir,
                                 '.cards/',
                                 'neut_{0}.card'.format(self.runnum))
+        # the name of the script is taken as the sge jobid and thus it
+        # must be unique
         out_script = os.path.join(outdir,
                                   '.scripts/',
-                                  'neut_script_{0}.sh'.format(self.runnum))
+                                  'neut_script_{0}_{1}.sh'.
+                                  format('_'.format(self.category),
+                                         self.runnum))
 
         utils.make_dirs_if_needed(os.path.dirname(out_card))
         utils.make_dirs_if_needed(os.path.dirname(out_script))

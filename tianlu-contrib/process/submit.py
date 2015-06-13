@@ -18,7 +18,7 @@ def submit_tgts(tgts=[6, 8, 18, 26, 29, 30, 82]):
 
     for tgt in tgts:
         builder.tgt = ELEMENTS[tgt]
-        builder.uniquepath = os.path.join('targets', builder.tgt.symbol)
+        builder.category = ['targets', builder.tgt.symbol]
         for run in range(100):
             builder.runnum = run
 
