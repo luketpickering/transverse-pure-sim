@@ -84,7 +84,7 @@ class Builder(object):
         out_script = os.path.join(outdir,
                                   '.scripts/',
                                   'neut_script_{0}_{1}.sh'.
-                                  format('_'.format(self.category),
+                                  format('_'.join(self.category),
                                          self.runnum))
 
         utils.make_dirs_if_needed(os.path.dirname(out_card))
