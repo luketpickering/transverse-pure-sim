@@ -25,3 +25,5 @@ fi
 if ! [[ ":$LD_LIBRARY_PATH:" == *":${SETUPDIR}/lib:"* ]]; then
   export LD_LIBRARY_PATH=${SETUPDIR}/neut2rootracker/lib:$LD_LIBRARY_PATH
 fi
+
+unset SETUPDIR

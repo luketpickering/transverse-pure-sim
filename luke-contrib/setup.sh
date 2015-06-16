@@ -19,3 +19,8 @@ for DIR in $DIRSTOADD; do
   fi
   cd "$CPWD"
 done
+
+unset DIRSTOADD
+unset DIR
+unset LCDIR
+unset CPWD
