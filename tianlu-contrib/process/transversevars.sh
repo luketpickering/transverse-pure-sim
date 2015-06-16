@@ -11,6 +11,6 @@ for generator in "${generators[@]}"
 do
     for category in "${categories[@]}"
     do
-        echo ProcessRooTrackerToTransversityVariables.exe -i "\"$HOME/store/other/generators/$generator/$category/*.root\"" -o $HOME/store/other/generators/$generator/$category/TransverseVars.root -g $generator
+        ProcessRooTrackerToTransversityVariables.exe -i "${HOME}/store/other/generators/${generator}/${category}/*.root" -o ${HOME}/store/other/generators/${generator}/${category}/TransverseVars.root -g ${generator}
     done
 done
