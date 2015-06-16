@@ -26,6 +26,7 @@ std::vector<std::string> Args;
     Required = required;
     Default = def;
     ValueIdent=valString;
+    Used=false;
   }
 
   bool Option::IsOpt(std::string const &optname) const{
