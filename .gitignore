@@ -32,7 +32,7 @@
 *_dict.cxx
 
 #Root File
-.root
+*.root
 
 #Diffs
-.diff
+*.diff
