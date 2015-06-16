@@ -18,6 +18,12 @@ do
         -f|--force)
             force=true
             ;;
+        -h|--help)
+            echo "Usage: $0 [-f <force removal>] [-h <help>]"
+            echo "[-f|--force <force removing previous outputs to prevent collision>]"
+            echo "[-h|--help <show this help message>]"
+            exit 0
+            ;;
         *)
             ;;
     esac
@@ -37,3 +43,5 @@ do
 
     done
 done
+
+echo "All done!" && exit 0
