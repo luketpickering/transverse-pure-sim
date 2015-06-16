@@ -3,7 +3,7 @@
  plotting ProcessRooTrackerToTransversityVariables
 
 all: cpp11test.exe utils Neut2RooTracker GiBUUToStdHep\
-	plotting ProcessRooTrackerToTransversityVariables
+	ProcessRooTrackerToTransversityVariables
 	@echo ""
 	@echo "*********************************************************************"
 	@echo "Success. Built all of Lukes PureGen code."
@@ -12,7 +12,7 @@ all: cpp11test.exe utils Neut2RooTracker GiBUUToStdHep\
 	@echo "*********************************************************************"
 
 clean: utils_clean Neut2RooTracker_clean GiBUUToStdHep_clean\
- plotting_clean ProcessRooTrackerToTransversityVariables_clean
+ ProcessRooTrackerToTransversityVariables_clean
 
 cpp11test.exe:
 	echo "int main(){}" > cpp11test.cxx
