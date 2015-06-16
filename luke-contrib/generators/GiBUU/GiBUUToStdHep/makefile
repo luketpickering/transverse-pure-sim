@@ -25,6 +25,7 @@ UTILSDEPSO :=libPureGenUtils.so
 all: $(TARGET)
 	mkdir -p $(BDIR) $(LDIR)
 	mv $(TARGET) $(BDIR)/
+	rm -f $(BDIR)/CountGiBUUEvents
 	ln -s `readlink -f ../CountGiBUUEvents`  $(BDIR)/CountGiBUUEvents
 	mv $(UTILSDEPSO) GiRooTracker.so $(LDIR)/
 	@echo ""
