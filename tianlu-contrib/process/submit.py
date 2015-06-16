@@ -2,7 +2,6 @@
 """This handles job submission for processing on the cluster with
 generators.
 """
-import os
 from tianlu.submit import submit
 from thirdparty.elements import ELEMENTS
 from builder import Builder

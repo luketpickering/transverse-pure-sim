@@ -41,7 +41,7 @@ class Builder(object):
         """
         return os.path.join(directories.GENERATORS_STORE,
                             generator,
-                            *os.path.join(self.category))
+                            *self.category)
 
 
     def build_genie(self):
@@ -49,7 +49,7 @@ class Builder(object):
         """
         outdir = self._outdir('genie')
         out_script = os.path.join(outdir,
-                                  '.scripts/',
+                                  '.scripts',
                                   'genie_script_{0}_{1}.sh'.
                                   format('_'.join(self.category),
                                          self.runnum))
@@ -77,12 +77,12 @@ class Builder(object):
         """
         outdir = self._outdir('neut')
         out_card = os.path.join(outdir,
-                                '.cards/',
+                                '.cards',
                                 'neut_{0}.card'.format(self.runnum))
         # the name of the script is taken as the sge jobid and thus it
         # must be unique
         out_script = os.path.join(outdir,
-                                  '.scripts/',
+                                  '.scripts',
                                   'neut_script_{0}_{1}.sh'.
                                   format('_'.join(self.category),
                                          self.runnum))
