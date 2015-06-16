@@ -3,8 +3,10 @@
 # Converts rootracker output to transverse variable output with Luke's
 # ProcessRooTrackerToTransversityVariables.exe
 
+##### user options ####
 generators=( 'neut' 'genie' )
 categories=( 'targets/C' 'targets/O' 'targets/Ar' 'targets/Fe' 'targets/Cu' 'targets/Zn' 'targets/Pb' )
+### end user options ###
 
 # Parse command line options
 force=false
@@ -15,7 +17,6 @@ do
     case $key in
         -f|--force)
             force=true
-            shift
             ;;
         *)
             ;;
