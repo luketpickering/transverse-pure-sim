@@ -46,10 +46,11 @@ export NEUTCLASSLOC=$NEUT_ROOT/src/neutclass
 echo "Setting up GENIE"
 export GENIE=$GENERATORS/genie_2_8_6
 export LD_LIBRARY_PATH=$GENIE/lib/:${LD_LIBRARY_PATH}
-export PATH=$GENIE/bin/:${PATH}
+export PATH=$GENIE/bin:${PATH}
 
 echo "Setting up NUWRO"
 export NUWRO=$GENERATORS/nuwro
+export PATH=$NUWRO/bin:${PATH}
 
 echo "Setting up GIBUU"
 export GIBUU=$GENERATORS/GiBUU_1.6

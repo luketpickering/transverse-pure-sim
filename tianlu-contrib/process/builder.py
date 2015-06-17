@@ -91,7 +91,7 @@ class Builder(object):
         utils.make_dirs_if_needed(os.path.dirname(out_script))
 
         # neut card for hydrogen filled differently
-        if self.tgt is ELEMENTS[1]:
+        if self.tgt == ELEMENTS[1]:
             utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
                                                 'templates/neut.card'),
                                    out_card,
@@ -119,6 +119,47 @@ class Builder(object):
                                out_script,
                                ZRUNNUMZ=self.runnum,
                                ZCARDFILEZ=out_card,
+                               ZOUTDIRZ=outdir)
+
+        os.chmod(out_script, 0755)
+        return out_script
+
+
+    def build_nuwro(self):
+        """Modifies the template/nuwro.params and nuwro_script. Formats params
+        file appropriately first and then builds the script for
+        submission.
+        """
+        outdir = self._outdir('nuwro')
+        out_params = os.path.join(outdir,
+                                  '.params',
+                                  'nuwro_{0}.params'.format(self.runnum))
+        # the name of the script is taken as the sge job name and thus it
+        # must be unique
+        out_script = os.path.join(outdir,
+                                  '.scripts',
+                                  'nuwro_script_{0}_{1}.sh'.
+                                  format('_'.join(self.category),
+                                         self.runnum))
+
+        utils.make_dirs_if_needed(os.path.dirname(out_params))
+        utils.make_dirs_if_needed(os.path.dirname(out_script))
+
+        utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
+                                            'templates/nuwro.params'),
+                               out_params,
+                               ZNTESTEVENTSZ=100*self.nevents,
+                               ZNEVENTSZ=self.nevents,
+                               ZNUPDGZ=self.nupdg,
+                               ZNUPMEVZ=self.nupgev*1e3,
+                               ZNNZ=self.tgt.neutrons,
+                               ZNPZ=self.tgt.protons)
+
+        utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
+                                            'templates/nuwro_script.sh'),
+                               out_script,
+                               ZRUNNUMZ=self.runnum,
+                               ZPARAMSFILEZ=out_params,
                                ZOUTDIRZ=outdir)
 
         os.chmod(out_script, 0755)
