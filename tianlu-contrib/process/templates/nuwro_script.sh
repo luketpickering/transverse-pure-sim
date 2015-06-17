@@ -7,7 +7,7 @@ ROUTNAME="nwr.${RUNNUM}.ntrac.root"
 cd $TMPDIR
 
 # run nuwro
-nuwro -i ZPARAMSFILEZ -o $OUTNAME
+nuwro -i ZCARDFILEZ -o $OUTNAME
 
 # convert output to rootracker
 nuwro2rootracker ${OUTNAME} ${ROUTNAME}

@@ -126,14 +126,14 @@ class Builder(object):
 
 
     def build_nuwro(self):
-        """Modifies the template/nuwro.params and nuwro_script. Formats params
+        """Modifies the template/nuwro.card and nuwro_script. Formats card
         file appropriately first and then builds the script for
         submission.
         """
         outdir = self._outdir('nuwro')
-        out_params = os.path.join(outdir,
-                                  '.params',
-                                  'nuwro_{0}.params'.format(self.runnum))
+        out_card = os.path.join(outdir,
+                                '.cards',
+                                'nuwro_{0}.card'.format(self.runnum))
         # the name of the script is taken as the sge job name and thus it
         # must be unique
         out_script = os.path.join(outdir,
@@ -142,12 +142,12 @@ class Builder(object):
                                   format('_'.join(self.category),
                                          self.runnum))
 
-        utils.make_dirs_if_needed(os.path.dirname(out_params))
+        utils.make_dirs_if_needed(os.path.dirname(out_card))
         utils.make_dirs_if_needed(os.path.dirname(out_script))
 
         utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
-                                            'templates/nuwro.params'),
-                               out_params,
+                                            'templates/nuwro.card'),
+                               out_card,
                                ZNTESTEVENTSZ=100*self.nevents,
                                ZNEVENTSZ=self.nevents,
                                ZNUPDGZ=self.nupdg,
@@ -159,7 +159,7 @@ class Builder(object):
                                             'templates/nuwro_script.sh'),
                                out_script,
                                ZRUNNUMZ=self.runnum,
-                               ZPARAMSFILEZ=out_params,
+                               ZCARDFILEZ=out_card,
                                ZOUTDIRZ=outdir)
 
         os.chmod(out_script, 0755)

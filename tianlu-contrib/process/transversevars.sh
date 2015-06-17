@@ -4,7 +4,7 @@
 # ProcessRooTrackerToTransversityVariables.exe
 
 ##### user options ####
-generators=( 'neut' 'genie' )
+generators=( 'neut' 'genie' 'nuwro')
 categories=( 'targets/C' 'targets/O' 'targets/Ar' 'targets/Fe' 'targets/Cu' 'targets/Zn' 'targets/Pb' )
 ### end user options ###
 
