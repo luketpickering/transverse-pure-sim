@@ -25,10 +25,12 @@ To configure, must specify location of some include and libs from the external p
 When running GENIE, gevgen may complain about a missing file in LHAPATH. From the website: "We removed the restriction on $LHAPATH. We now supply, in $GENIE/data/evgen/pdfs, the patched PDF. Please copy this to your $LHAPATH area."
 
 # Instructions for NuWro installation
-`svn export svn://borg.ift.uni.wroc.pl/pub/nuwro`
+`git clone http://borg.ift.uni.wroc.pl/nuwro.git`
 `cd nuwro && make`
 
-Also requires pythia6 enabled ROOT with libPythia6.so in `root/lib/`, and then root must be configured as `./configure --with-pythia6-libdir=$PWD/lib`. If there's an undefined reference error to some gfortran variables, must add `-lgfortran` to Makefile before `-lPythia6`.
+Should make sure to checkout the necessary tagged version.
+
+Also requires pythia6 enabled ROOT with libPythia6.so in `root/lib/`, and then root must be configured as `./configure --with-pythia6-libdir=$PWD/lib`.
 
 ## Word of warning about gfortran
 It seems that nuwro requires a libPythia6.so that is linked to libgfortran.so.1 which is bundled with gcc-4.1.2 (default in SL5). However, GiBUU requires a more up-to-date version of gcc, and Luke's utilities packages also require gcc-4.7+ since they have C++11 specs. These have replaced libgfortran.so.1 with libgfortran.so.3 and any attempts to compile nuwro with a pythia6 library linked to this version of libgfortran will result in `undefined symbol: _gfortran_...` errors (pythia6 itself will still compile fine though). The current workaround is to compile pythia6 with gcc-4.1.2 so that it links to the older version of libgfortran. Then use gcc-4.7+ to compile the generators themselves.
