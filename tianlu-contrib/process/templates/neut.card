@@ -53,12 +53,12 @@ C
 C NUMBNDP : total number of bound proton
 C           (e.g. CH => 6, H2O => 8, Ar => 18, Fe => 26)
 C
-NEUT-NUMBNDP ZNZZ
+NEUT-NUMBNDP ZNBPZ
 C
 C NUMFREP : total number of free proton
 C           (e.g. CH => 1, H2O => 2, Ar => 0, Fe => 0)
 C
-NEUT-NUMFREP ZNHZ
+NEUT-NUMFREP ZNFPZ
 C
 C NUMATOM : atomic number of atom heavier than hydrogen
 C           (e.g. CH => 12, H2O =>16, Ar => 40, Fe => 56)

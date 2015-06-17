@@ -89,16 +89,30 @@ class Builder(object):
 
         utils.make_dirs_if_needed(os.path.dirname(out_card))
         utils.make_dirs_if_needed(os.path.dirname(out_script))
-        utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
-                                            'templates/neut.card'),
-                               out_card,
-                               ZNEVENTSZ=self.nevents,
-                               ZNUPDGZ=self.nupdg,
-                               ZNUPMEVZ=self.nupgev*1e3,
-                               ZNNZ=self.tgt.neutrons,
-                               ZNZZ=self.tgt.number,
-                               ZNHZ=0,
-                               ZNAZ=self.tgt.number+self.tgt.neutrons)
+
+        # neut card for hydrogen filled differently
+        if self.tgt is ELEMENTS[1]:
+            utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
+                                                'templates/neut.card'),
+                                   out_card,
+                                   ZNEVENTSZ=self.nevents,
+                                   ZNUPDGZ=self.nupdg,
+                                   ZNUPMEVZ=self.nupgev*1e3,
+                                   ZNNZ=0,
+                                   ZNBPZ=0,
+                                   ZNFPZ=1,
+                                   ZNAZ=0)
+        else:
+            utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
+                                                'templates/neut.card'),
+                                   out_card,
+                                   ZNEVENTSZ=self.nevents,
+                                   ZNUPDGZ=self.nupdg,
+                                   ZNUPMEVZ=self.nupgev*1e3,
+                                   ZNNZ=self.tgt.neutrons,
+                                   ZNBPZ=self.tgt.number,
+                                   ZNFPZ=0,
+                                   ZNAZ=self.tgt.number+self.tgt.neutrons)
 
         utils.find_and_replace(os.path.join(PACKAGE_DIRECTORY,
                                             'templates/neut_script.sh'),
