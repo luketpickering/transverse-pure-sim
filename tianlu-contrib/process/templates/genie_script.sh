@@ -4,6 +4,7 @@ RUNNUM=ZRUNNUMZ
 OUTNAME="gntp.${RUNNUM}.ghep.root"
 ROUTNAME="gntp.${RUNNUM}.gtrac.root"
 
+# need to copy genie over to tmpdir if we want to update the UserPhysicsOptions xml files
 cd $TMPDIR
 cp -a $GENIE ./
 
