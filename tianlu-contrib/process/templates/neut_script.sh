@@ -10,7 +10,7 @@ cp -a $NEUT_ROOT ./
 cd neut*/src/neutsmpl
 
 # run neut
-./neutroot2 ZCARDFILEZ $OUTNAME
+./neutroot2 ZCARDFILEZ $OUTNAME > /dev/null
 
 # convert output to rootracker
 NeutToRooTracker.exe -i ${OUTNAME} -o ${ROUTNAME} -s -G

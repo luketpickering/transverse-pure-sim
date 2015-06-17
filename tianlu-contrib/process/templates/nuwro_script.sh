@@ -6,8 +6,9 @@ ROUTNAME="nwr.${RUNNUM}.ntrac.root"
 
 cd $TMPDIR
 
-# run nuwro
-nuwro -i ZCARDFILEZ -o $OUTNAME
+# run nuwro and silence stdout because sometimes it can get caught in
+# infinite loop and bloat the logs
+nuwro -i ZCARDFILEZ -o $OUTNAME > /dev/null
 
 # convert output to rootracker
 nuwro2rootracker ${OUTNAME} ${ROUTNAME}
