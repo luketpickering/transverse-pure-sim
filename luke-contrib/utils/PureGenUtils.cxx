@@ -50,4 +50,17 @@ std::string int2str(int i){
   return ss.str();
 }
 
+bool str2bool(std::string const &str, bool &retC){
+  if(str == "1" || str == "true" ){
+    retC = true;
+    return true;
+  }
+  if(str == "0" || str == "false" ){
+    retC = true;
+    return false;
+  }
+  retC = false;
+  return false;
+}
+
 }

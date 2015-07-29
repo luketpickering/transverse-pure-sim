@@ -14,11 +14,15 @@ std::vector<std::string> Args;
     Default = [](){};
   }
 
-  Option::Option(std::string shortname,std::string longname, bool hasval,
+  Option::Option(
+    std::string shortname,
+    std::string longname,
+    bool hasval,
     std::function<bool(std::string const &opt)> callback,
     bool required,
     std::function<void()> def,
     std::string valString){
+
     ShortName = shortname;
     LongName = longname;
     HasVal = hasval;
@@ -35,7 +39,7 @@ std::vector<std::string> Args;
 
   std::ostream& operator<<(std::ostream& os, Option const &opt){
     return os << "(" << opt.ShortName << "|" << opt.LongName << ")"
-      << "  " << opt.ValueIdent
+      << (opt.HasVal?" " + opt.ValueIdent:std::string(""))
       << (opt.Required?" [Required]":"");
   }
 
@@ -111,13 +115,14 @@ void SayRunLike(){
   for(auto const & opt: OptSpec){
     if(opt.Required){
       std::cout << " " << opt.ShortName
-        << " " << (opt.HasVal?opt.ValueIdent:std::string("")) << std::flush;
+        << (opt.HasVal?" " +opt.ValueIdent:std::string("")) << std::flush;
     }
   }
   for(auto const & opt: OptSpec){
     if(!opt.Required){
       std::cout << " [" << opt.ShortName
-        << " " << opt.ValueIdent << "]" << std::flush;
+        << (opt.HasVal?" " + opt.ValueIdent:std::string("")) << "]"
+        << std::flush;
     }
   }
   std::cout << "\n\n-----------------------------------\n" << std::endl;

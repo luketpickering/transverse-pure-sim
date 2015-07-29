@@ -1,7 +1,9 @@
-#include <string>
-#include <functional>
 #ifndef SEEN_PUREGEN_CLITOOLS_HXX
 #define SEEN_PUREGEN_CLITOOLS_HXX
+
+#include <string>
+#include <functional>
+
 #include <vector>
 #include <iostream>
 
@@ -18,7 +20,9 @@ struct Option {
   std::function<void()> Default;
 
   Option();
-  Option(std::string shortname,std::string longname, bool hasval,
+  Option(std::string shortname,
+    std::string longname,
+    bool hasval,
     std::function<bool(std::string const &opt)> callback,
     bool required=false,
     std::function<void()> def=[](){},

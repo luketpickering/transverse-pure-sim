@@ -26,6 +26,8 @@ STR2INT_ERROR str2int (int &i, char const *s, int base=10);
 
 std::string int2str(int i);
 
+bool str2bool(std::string const &str, bool &retC);
+
 template<typename T, size_t N>
 void ClearArray(T (&arr)[N]){
   for(size_t i = 0; i < N; ++i){
