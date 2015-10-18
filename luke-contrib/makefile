@@ -1,9 +1,11 @@
 
 .PHONY: cpp11test.exe utils Neut2RooTracker\
- plotting ProcessRooTrackerToTransversityVariables
+ plotting ProcessRooTrackerToTransversityVariables\
+ GiBUUToStdHep
 
 all: cpp11test.exe utils Neut2RooTracker\
-	ProcessRooTrackerToTransversityVariables
+	ProcessRooTrackerToTransversityVariables\
+	GiBUUToStdHep
 	@echo ""
 	@echo "*********************************************************************"
 	@echo "Success. Built all of Lukes PureGen code."
@@ -12,7 +14,8 @@ all: cpp11test.exe utils Neut2RooTracker\
 	@echo "*********************************************************************"
 
 clean: utils_clean Neut2RooTracker_clean\
- ProcessRooTrackerToTransversityVariables_clean
+ ProcessRooTrackerToTransversityVariables_clean\
+ GiBUUToStdHep_clean
 
 cpp11test.exe:
 	echo "int main(){}" > cpp11test.cxx
@@ -27,6 +30,8 @@ plotting:
 	cd plotting && $(MAKE)
 ProcessRooTrackerToTransversityVariables: utils
 	cd transverse-variable-tree-generation && $(MAKE)
+GiBUUToStdHep: utils
+	cd gibuu/GiBUUToStdHep && $(MAKE)
 
 utils_clean:
 	cd utils && $(MAKE) clean
@@ -36,3 +41,5 @@ plotting_clean:
 	cd plotting && $(MAKE) clean
 ProcessRooTrackerToTransversityVariables_clean:
 	cd transverse-variable-tree-generation && $(MAKE) clean
+GiBUUToStdHep_clean:
+	cd gibuu/GiBUUToStdHep && $(MAKE) clean
