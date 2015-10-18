@@ -1,3 +1,6 @@
 [submodule "luke-contrib/utils"]
 	path = luke-contrib/utils
 	url = git@github.com:luketpickering/lukes-utils.git
+[submodule "luke-contrib/gibuu"]
+	path = luke-contrib/gibuu
+	url = git@github.com:luketpickering/GiBUU-t2k-dev.git
