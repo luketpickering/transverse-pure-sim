@@ -6,7 +6,7 @@ else
   LCDIR=$(readlink -f ${BASH_SOURCE%/*})
 fi
 
-DIRSTOADD="${LCDIR}/generators/neut ${LCDIR}/generators/GiBUU ${LCDIR}/plotting ${LCDIR}/transverse-variable-tree-generation/all"
+DIRSTOADD="${LCDIR}/generators/neut ${LCDIR}/plotting ${LCDIR}/transverse-variable-tree-generation"
 
 CPWD=$PWD
 

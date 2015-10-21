@@ -26,7 +26,7 @@ Neut2RooTracker: utils
 plotting:
 	cd plotting && $(MAKE)
 ProcessRooTrackerToTransversityVariables: utils
-	cd transverse-variable-tree-generation/all && $(MAKE)
+	cd transverse-variable-tree-generation && $(MAKE)
 
 utils_clean:
 	cd utils && $(MAKE) clean
@@ -35,4 +35,4 @@ Neut2RooTracker_clean:
 plotting_clean:
 	cd plotting && $(MAKE) clean
 ProcessRooTrackerToTransversityVariables_clean:
-	cd transverse-variable-tree-generation/all && $(MAKE) clean
+	cd transverse-variable-tree-generation && $(MAKE) clean
