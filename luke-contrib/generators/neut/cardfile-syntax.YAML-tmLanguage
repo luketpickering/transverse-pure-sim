@@ -7,20 +7,20 @@ uuid: 9be3c69d-9f8e-408f-ae2a-cd004f137810
 
 patterns:
 - comment: Not a comment
-  name: constant.numeric.nd280_parameters
+  name: constant.numeric.card
   match: '(\bC|!)-+'
   captures:
     '1': {name: entity.other.attribute-name.class.card}
-    '2': {name: constant.numeric.nd280_parameters}
+    '2': {name: constant.numeric.card}
 - comment: Not a comment
   name: entity.other.attribute-name.class.card
   match: '^(C)(C+)$'
   captures:
     '1': {name: entity.other.attribute-name.class.card}
-    '2': {name: constant.numeric.nd280_parameters}
+    '2': {name: constant.numeric.card}
 - comment: Comment
   name: entity.tag.card
-  match: '(.*?)(\bC|!)(.*)'
+  match: '([^-]?)(\bC|!)(.*)'
   captures:
     '1': {name: variable.parameter.card}
     '2': {name: entity.other.attribute-name.class.card}

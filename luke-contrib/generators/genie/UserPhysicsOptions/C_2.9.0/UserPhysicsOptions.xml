@@ -35,11 +35,21 @@ STFC, Rutherford Appleton Laboratory
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  Constants in Feynman-Kislinger-Ravndal model for baryon excitation used in the Rein-Seghal
+  Constants in Feynman-Kislinger-Ravndal model for baryon excitation used in the Rein-Sehgal
   resonance model
   -->
   <param type="double" name="RS-Omega"> 1.05  </param>
   <param type="double" name="RS-Zeta">  0.762 </param> <!-- 0.75 -->
+
+ <!-- Parameters for the Berger-Sehgal Delta model
+  is_KNL      = Kuzmin, Lyubushkin, Naumov Mod. Phys. Lett. A19 (2004) 2815: turns on some form factor
+  is_BRS      = Berger, Sehgal Phys. Rev. D76, 113004 (2007)
+  newGA, newGV = tuning to axial, vector form factors by MiniBoone (J. Nowak)
+  -->
+  <param type="bool" name="is_KNL"> false </param>
+  <param type="bool" name="is_BRS"> true </param>
+  <param type="bool" name="minibooneGA">  true </param>
+  <param type="bool" name="minibooneGV">  true </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,7 +149,7 @@ STFC, Rutherford Appleton Laboratory
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Use a modification to Adler's PCAC theorem that includes the final state lepton mass.
-  See Rein-Seghal, hep-ph/0606185. Affects the COH CC cross section.
+  See Rein-Sehgal, hep-ph/0606185. Affects the COH CC cross section.
   -->
   <param type="bool" name="COH-UseModifiedPCAC"> true </param>
 
@@ -165,6 +175,19 @@ STFC, Rutherford Appleton Laboratory
   Parameters for anomaly mediated neutrino-gamma interactions
   -->
  <param type="double" name="AMNuGamma-Gw"> 20.0 </param>
+
+ <!--
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Pion decay constant (GeV)
+  -->
+ <param type="double" name="PionDecayConstant"> 0.093 </param>
+
+ <!--
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  SU(3) parameters D and F
+  -->
+  <param type="double" name="SU3-D"> 0.804 </param>
+  <param type="double" name="SU3-F"> 0.463 </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -251,19 +274,27 @@ STFC, Rutherford Appleton Laboratory
   Options:
    - genie::FGMBodekRitchie/Default
    - genie::SpectralFunc1d/Default
+   - genie::EffectiveSF/Default  <- See http://arxiv.org/abs/1405.0583
   The 'NuclearModel' option defines the default basic model which should work for _any_ nuclei
   (typically a Fermi Gas model with the Bodek-Ritchie NN corellatin tail). Refinements for specific
   nuclei are possible, by specifying the 'NuclearModel@Pdg=10LZZZAAAI' option.
   Currently the same nuclear model is forced for all isotopes.
-  -->
+
   <param type="alg"  name="NuclearModel">                 genie::FGMBodekRitchie/Default </param>
+  -->
+  <param type="alg"  name="NuclearModel">                 genie::EffectiveSF/Default </param>
 <!--
   <param type="alg" name="NuclearModel@Pdg=1000060120">   genie::SpectralFunc1d/Default  </param>
   <param type="alg" name="NuclearModel@Pdg=1000260560">   genie::SpectralFunc1d/Default  </param>
 -->
   <param type="bool" name="IsotopesUseSameNuclearModel">  true                           </param>
 
- <!--
+<!-- Option for turning on Transverse Enhancement by Elastic Form Factor adjustment.
+     See http://arxiv.org/abs/1405.0583 and http://arxiv.org/abs/1106.0340
+-->
+  <param type="bool" name="UseElFFTransverseEnhancement">  false                              </param>
+  <param type="alg" name="TransverseEnhancement"> genie::TransverseEnhancementFFModel/Default </param>
+<!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Parameters related with GENIE's Fermi Gas (RFG) model implementation
   - RFG-Momentum-CutOff is a momentum cut-off for the NN correlation tail
@@ -305,7 +336,7 @@ STFC, Rutherford Appleton Laboratory
   Table of Fermi momentum (kF) constants for various nuclei
   The tables can be found in $GENIE/config/FermiMomentumTables.xml
   -->
-  <param type="string" name="FermiMomentumTable"> NoFM </param>
+  <param type="string" name="FermiMomentumTable"> Default </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -368,6 +399,8 @@ STFC, Rutherford Appleton Laboratory
   <param type="double" name="KNO-ProbPiplusPiminus"> 0.6267 </param>
   <param type="double" name="KNO-ProbKplusKminus">   0.03 </param>
   <param type="double" name="KNO-ProbK0K0bar">       0.03 </param>
+  <param type="double" name="KNO-ProbPi0Eta">        0.0 </param>
+  <param type="double" name="KNO-ProbEtaEta">        0.0   </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -478,8 +511,10 @@ STFC, Rutherford Appleton Laboratory
   Options include:
    - genie::HAIntranuke/Default
    - genie::HNIntranuke/Default
+   - genie::HAIntranuke2014/Default  new 2d spline for piA
+   - genie::HNIntranuke2014/Default
   -->
-  <param type="bool" name="HadronTransp-Enable"> false </param>
+  <param type="bool" name="HadronTransp-Enable"> true </param>
   <param type="alg"  name="HadronTransp-Model">  genie::HAIntranuke/Default  </param>
 
  <!--
@@ -612,30 +647,42 @@ STFC, Rutherford Appleton Laboratory
   Specify which cross section model is to be used by each GENIE event generation thread.
   The parameter name is build as: "XSecModel@[name of thread]"
   -->
-  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-CC">       genie::LwlynSmithQELCCPXSec/Default     </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-NC">       genie::AhrensNCELPXSec/Default          </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-EM">       genie::RosenbluthPXSec/Default          </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/RES-CC">       genie::ReinSeghalRESPXSec/Default       </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/RES-NC">       genie::ReinSeghalRESPXSec/Default       </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/RES-EM">       genie::ReinSeghalRESPXSec/Default       </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-CC">       genie::QPMDISPXSec/Default              </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-NC">       genie::QPMDISPXSec/Default              </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-EM">       genie::QPMDISPXSec/Default              </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/COH-CC">       genie::ReinSeghalCOHPiPXSec/Default     </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/COH-NC">       genie::ReinSeghalCOHPiPXSec/Default     </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/IMD">          genie::BardinIMDRadCorPXSec/Default     </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/IMD-ANH">      genie::IMDAnnihilationPXSec/Default     </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/NUE-EL">       genie::NuElectronPXSec/Default          </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-CC-CHARM"> genie::KovalenkoQELCharmPXSec/Default   </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-CC-CHARM"> genie::AivazisCharmPXSecLO/CC-Default   </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/AM-NUGAMMA">   genie::H3AMNuGammaPXSec/Default         </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DFR-CC">       genie::ReinDFRPXSec/Default             </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/DFR-NC">       genie::ReinDFRPXSec/Default             </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-CC">       genie::MECPXSec/Default                 </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-NC">       genie::MECPXSec/Default                 </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-EM">       genie::MECPXSec/Default                 </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/GLRES">        genie::GLRESPXSec/Default               </param>
-  <param type="alg" name="XSecModel@genie::EventGenerator/NucleonDecay"> genie::DummyPXSec/Default               </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-CC">         genie::LwlynSmithQELCCPXSec/Default     </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-NC">         genie::AhrensNCELPXSec/Default          </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-EM">         genie::RosenbluthPXSec/Default          </param>
+
+  <!-- New Berger-Sehgal Resonance w/MiniBooNE tune... -->
+  <!--
+
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-CC">         genie::BergerSehgalRESPXSec2014/Default </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-NC">         genie::BergerSehgalRESPXSec2014/Default </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-EM">         genie::BergerSehgalRESPXSec2014/Default </param>
+   -->
+
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-CC">         genie::ReinSehgalRESPXSec/Default       </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-NC">         genie::ReinSehgalRESPXSec/Default       </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/RES-EM">         genie::ReinSehgalRESPXSec/Default       </param>
+
+  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-CC">         genie::QPMDISPXSec/Default            </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-NC">         genie::QPMDISPXSec/Default            </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-EM">         genie::QPMDISPXSec/Default            </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/COH-CC">         genie::ReinSehgalCOHPiPXSec/Default   </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/COH-NC">         genie::ReinSehgalCOHPiPXSec/Default   </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/IMD">            genie::BardinIMDRadCorPXSec/Default   </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/IMD-ANH">        genie::IMDAnnihilationPXSec/Default   </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/NUE-EL">         genie::NuElectronPXSec/Default        </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-CC-CHARM">   genie::KovalenkoQELCharmPXSec/Default </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-CC-CHARM">   genie::AivazisCharmPXSecLO/CC-Default </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DIS-CC-SINGLEK"> genie::AlamSimoAtharVacasSKPXSec2014/Default </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/QEL-CC-LAMBDA">  genie::PaisQELLambdaPXSec/Default     </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/AM-NUGAMMA">     genie::H3AMNuGammaPXSec/Default       </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DFR-CC">         genie::ReinDFRPXSec/Default           </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/DFR-NC">         genie::ReinDFRPXSec/Default           </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-CC">         genie::MECPXSec/Default               </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-NC">         genie::MECPXSec/Default               </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/MEC-EM">         genie::MECPXSec/Default               </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/GLRES">          genie::GLRESPXSec/Default             </param>
+  <param type="alg" name="XSecModel@genie::EventGenerator/NucleonDecay">   genie::DummyPXSec/Default             </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

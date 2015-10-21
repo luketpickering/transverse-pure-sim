@@ -1,0 +1,5 @@
+# number of protons
+nucleus_p = 2
+
+# number of neutrons
+nucleus_n = 2

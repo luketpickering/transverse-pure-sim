@@ -65,14 +65,14 @@ C           (e.g. CH => 12, H2O =>16, Ar => 40, Fe => 56)
 C
 NEUT-NUMATOM 12
 C
-CNEUT-PFSURF 0.0
-CNEUT-PFMAX  0.0
+CNEUT-PFSURF 0.225
+CNEUT-PFMAX  0.225
 C
 C **** NEUTRINO INTERACTION ****
 C
 C FERM : Fermi motion  0 : on ( default )  1 : off
 C
-NEUT-FERM 1
+NEUT-FERM 0
 C
 C PAUL : Pauli blocking  0 : on ( default )  1 : off
 C

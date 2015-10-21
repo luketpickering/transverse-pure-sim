@@ -45,7 +45,7 @@ beam_energy = 600
 ################################################################
 
 #@target/proton.txt
-@target/C.txt
+@/home/hep/lp208/projects/t2k/dev/transverse-pure-sim/luke-contrib/generators/nuwro/params/targets/C.txt
 
 #@target/ND280_975.txt
 #@target/proton.txt
@@ -66,8 +66,8 @@ dyn_dis_cc =1      // Deep inelastic charged current
 dyn_dis_nc =1      // Deep inelastic neutral current
 dyn_coh_cc =1      // Coherent charged current
 dyn_coh_nc =1      // Coherent neutral current
-dyn_mec_cc =0      // Meson exchange charged current
-dyn_mec_nc =0      // Meson exchange neutral current
+dyn_mec_cc =1      // Meson exchange charged current
+dyn_mec_nc =1      // Meson exchange neutral current
 
 
 ################################################################
@@ -137,15 +137,15 @@ cc_smoothing=0
 # qel_kinematics   = 3  // momentum dependent kinematics
 # qel_kinematics   = 4  // momentum dependent kinematics with outgoing nucleon energy edjustment
 #   The choice of the kinematics for the qel interaction vertex
-#   	0 - relativistic
+#     0 - relativistic
 #       1 -
 #       2 - bodek
 #       3 - momentum dependent potential
 #       4 - Fermi gas with
 
 
-  qel_rpa = 0    // Don't use rpa
-# qel_rpa = 1    // Use rpa without effective mass of nucleon
+#  qel_rpa = 0    // Don't use rpa
+qel_rpa = 1    // Use rpa without effective mass of nucleon
 # qel_rpa = 2    // Use effectove mass without rpa (test only)
 # qel_rpa = 3    // Use rpa with effective mass of nucleon (test only)
 
@@ -179,7 +179,7 @@ pion_C5A = 1.19
 
 # recommended value is  500, this controls the precision in RES-DIS boundary region
 spp_precision= 500
-res_dis_cut = 1600	//res dis boundary in MeV, should be 1600
+res_dis_cut = 1600  //res dis boundary in MeV, should be 1600
 
 ################################################################
 #   COH
@@ -193,9 +193,9 @@ coh_mass_correction = 1  //Rein Sehgal correction to CC coherent single pion pro
 #   MEC
 ################################################################
 
-mec_kind = 1  // TEM model
+#mec_kind = 1  // TEM model
 #mec_kind = 2  // Marteau model
-#mec_kind = 3  // Nieves model
+mec_kind = 3  // Nieves model
 
 ################################################################
 #
@@ -215,7 +215,7 @@ nucleus_kf          = 220   // [MeV] Fermi momentum, used in Fermi gas model and
 
 # Models for the description of nucleus as a target:
 # nucleus_target = 0 // free target;
-# nucleus_target = 1 // Fermi gas;
+nucleus_target = 1 // Fermi gas;
 # nucleus_target = 2 // local Fermi gas;
 # nucleus_target = 3 // Bodek-Ritchie;
 # nucleus_target = 4 // "effective" spectral function (carbon or oxygen);
@@ -223,7 +223,7 @@ nucleus_kf          = 220   // [MeV] Fermi momentum, used in Fermi gas model and
 # nucleus_target = 6 // deuterium with constant binding energy nucleus_E_b (for tests only!)
 
 
-kaskada_on 	 = 1      // use (1) or not (0) the cascade
+kaskada_on   = 1      // use (1) or not (0) the cascade
 
 kaskada_writeall = 0 // store all intermedate cascade particles in the event.all vector
 tau = 8.0            //

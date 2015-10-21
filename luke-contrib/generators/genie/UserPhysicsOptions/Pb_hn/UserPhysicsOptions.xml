@@ -305,7 +305,7 @@ STFC, Rutherford Appleton Laboratory
   Table of Fermi momentum (kF) constants for various nuclei
   The tables can be found in $GENIE/config/FermiMomentumTables.xml
   -->
-  <param type="string" name="FermiMomentumTable"> NoFM </param>
+  <param type="string" name="FermiMomentumTable"> Default </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,8 +479,8 @@ STFC, Rutherford Appleton Laboratory
    - genie::HAIntranuke/Default
    - genie::HNIntranuke/Default
   -->
-  <param type="bool" name="HadronTransp-Enable"> false </param>
-  <param type="alg"  name="HadronTransp-Model">  genie::HAIntranuke/Default  </param>
+  <param type="bool" name="HadronTransp-Enable"> true </param>
+  <param type="alg"  name="HadronTransp-Model">  genie::HNIntranuke/Default  </param>
 
  <!--
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

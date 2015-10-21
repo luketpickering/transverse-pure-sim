@@ -33,7 +33,7 @@ C EVCT-INMEV  : flag for histograms in MeV
 C               (MeV => 1, GeV => 0)
 C
 EVCT-MPV 1
-EVCT-PV  600.
+EVCT-PV  8000.
 CEVCT-MPV 2
 CEVCT-PV  50.  1000.
 C
@@ -65,14 +65,14 @@ C           (e.g. CH => 12, H2O =>16, Ar => 40, Fe => 56)
 C
 NEUT-NUMATOM 12
 C
-CNEUT-PFSURF 0.0
-CNEUT-PFMAX  0.0
+CNEUT-PFSURF 0.225
+CNEUT-PFMAX  0.225
 C
 C **** NEUTRINO INTERACTION ****
 C
 C FERM : Fermi motion  0 : on ( default )  1 : off
 C
-NEUT-FERM 1
+NEUT-FERM 0
 C
 C PAUL : Pauli blocking  0 : on ( default )  1 : off
 C
@@ -199,11 +199,11 @@ C Nucleon rescattering
 C
 C NUCRES-RESCAT  1: on (default) 0: off
 C
-NUCRES-RESCAT 0
+NUCRES-RESCAT 1
 C
 C NUCRES-XNUCFACT  cross-section factor to study uncertainty default = 1.
 C
-NUCRES-FACT 0.
+NUCRES-FACT 1.
 C
 C
 C
@@ -316,7 +316,7 @@ C          : 0x : Scaling to CCQE     ( same as 5.0.x )
 C          : 1x : Scaling to Spectrum func. with Dipole (prior to v5.1.2)
 C          : 2x : Scaling to Spectrum func. with BBBA05 (default from v5.1.2)
 C
-NEUT-MDLQE 002
+NEUT-MDLQE 402
 C
 C
 C RAND : random seed

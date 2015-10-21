@@ -65,14 +65,14 @@ C           (e.g. CH => 12, H2O =>16, Ar => 40, Fe => 56)
 C
 NEUT-NUMATOM 12
 C
-CNEUT-PFSURF 0.0
-CNEUT-PFMAX  0.0
+CNEUT-PFSURF 0.225
+CNEUT-PFMAX  0.225
 C
 C **** NEUTRINO INTERACTION ****
 C
 C FERM : Fermi motion  0 : on ( default )  1 : off
 C
-NEUT-FERM 1
+NEUT-FERM 0
 C
 C PAUL : Pauli blocking  0 : on ( default )  1 : off
 C
@@ -199,11 +199,11 @@ C Nucleon rescattering
 C
 C NUCRES-RESCAT  1: on (default) 0: off
 C
-NUCRES-RESCAT 0
+NUCRES-RESCAT 1
 C
 C NUCRES-XNUCFACT  cross-section factor to study uncertainty default = 1.
 C
-NUCRES-FACT 0.
+NUCRES-FACT 1.
 C
 C
 C
@@ -309,12 +309,19 @@ C
 C  Coherent Pion Nuclear Radios (Default: 1.0 fm)
 CNEUT-R0COH 1.0
 C
+C
 C MDLQE    : CC Quasi-elastic / NC elastic model
-C          : x1 : Smith-Moniz for CC
-C          : x2 : Smith-Moniz for CC with BBBA05
-C          : 0x : Scaling to CCQE     ( same as 5.0.x )
-C          : 1x : Scaling to Spectrum func. with Dipole (prior to v5.1.2)
-C          : 2x : Scaling to Spectrum func. with BBBA05 (default from v5.1.2)
+C          : xx1 : Smith-Moniz for CC
+C          : xx2 : Smith-Moniz for CC with BBBA05
+C          : xx3 : Smith-Moniz for CC with BBBA07
+C          : x0x : Scaling to CCQE     ( same as 5.0.x )
+C          : x1x : Scaling to Spectrum func. with Dipole
+C          : x2x : Scaling to Spectrum func. with BBBA05
+C          : x3x : Scaling to Spectrum func. with BBBA07
+C          : 1xx : Transverse enhancement (0: off, default)
+C          : 4x1 : Full spectral function with dipole
+C          : 4x2 : Full spectral function with BBBA05
+C          : 4x3 : Full spectral function with BBBA07C
 C
 NEUT-MDLQE 002
 C
