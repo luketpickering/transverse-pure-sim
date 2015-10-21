@@ -1,4 +1,7 @@
+#include <stdexcept>
+
 #include "PureGenUtils.hxx"
+
 
 namespace PGUtils {
 
@@ -61,6 +64,75 @@ bool str2bool(std::string const &str, bool &retC){
   }
   retC = false;
   return false;
+}
+
+bool str2bool(std::string const &str){
+  bool dummy;
+  return str2bool(str,dummy);
+}
+
+std::vector<std::string> SplitStringByDelim(std::string const &inp,
+  char const *delim){
+
+  size_t nextOccurence = 0;
+  size_t prevOccurence = 0;
+  std::vector<std::string> outV;
+  bool AtEnd = false;
+  // std::cout << inp << std::endl;
+  while(!AtEnd){
+    // std::cout << "[SplitStringByDelim] prevOccurence: " << prevOccurence << std::endl;
+    nextOccurence = inp.find_first_of(delim,prevOccurence);
+    // std::cout << "[SplitStringByDelim] nextOccurence: " <<
+      // ((nextOccurence == std::string::npos)?-1:nextOccurence) << std::endl;
+    if(nextOccurence == std::string::npos){
+      if(prevOccurence == inp.length()){
+        // std::cout << "[SplitStringByDelim] Found trailing delimiter." << std::endl;
+        break;
+      }
+      AtEnd = true;
+    }
+    outV.push_back(inp.substr(prevOccurence,(nextOccurence-prevOccurence)));
+    // std::cout << "[SplitStringByDelim] Added string: " << outV.back()
+      // << std::endl;
+    prevOccurence = nextOccurence+1;
+  }
+  return outV;
+}
+
+std::vector<float> StringVToFloatV(
+  std::vector<std::string> const &stringV){
+
+  std::vector<float> outV;
+  for(auto const & str : stringV){
+    float flt = 0.0;
+    try{
+      flt = std::stof(str);
+    } catch (const std::invalid_argument& ia) {
+      std::cout << "Couldn't parse str: \"" << str << "\"\n\t"
+        << ia.what() << std::endl;
+      throw;
+    }
+    outV.push_back(flt);
+  }
+  return outV;
+}
+
+std::vector<int> StringVToIntV(
+  std::vector<std::string> const &stringV){
+
+  std::vector<int> outV;
+  for(auto const & str : stringV){
+    int ihldr = 0.0;
+    try{
+      ihldr = std::stoi(str);
+    } catch (const std::invalid_argument& ia) {
+      std::cout << "Couldn't parse str: \"" << str << "\"\n\t"
+        << ia.what() << std::endl;
+      throw;
+    }
+    outV.push_back(ihldr);
+  }
+  return outV;
 }
 
 }

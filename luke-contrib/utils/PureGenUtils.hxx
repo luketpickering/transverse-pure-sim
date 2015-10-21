@@ -6,6 +6,8 @@
 
 #include <string>
 #include <sstream>
+#include <vector>
+#include <iostream>
 
 namespace PGUtils {
 
@@ -27,6 +29,7 @@ STR2INT_ERROR str2int (int &i, char const *s, int base=10);
 std::string int2str(int i);
 
 bool str2bool(std::string const &str, bool &retC);
+bool str2bool(std::string const &str);
 
 template<typename T, size_t N>
 void ClearArray(T (&arr)[N]){
@@ -85,6 +88,13 @@ T** NewPPOf2DArray(T (&arr)[N][M]){
   return DynArrOfP;
 }
 
+std::vector<std::string> SplitStringByDelim(std::string const &inp,
+  char const *delim);
+std::vector<float> StringVToFloatV(
+  std::vector<std::string> const &stringV);
+
+std::vector<int> StringVToIntV(
+  std::vector<std::string> const &stringV);
 }
 
 #endif
