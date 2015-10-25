@@ -24,8 +24,8 @@ cpp11test.exe:
 
 utils:
 	cd utils && $(MAKE)
-Neut2RooTracker: utils
-	cd generators/neut/neut2rootracker && $(MAKE)
+Neut2RooTracker:
+	cd neut/neut2rootracker && $(MAKE)
 plotting:
 	cd plotting && $(MAKE)
 ProcessRooTrackerToTransversityVariables: utils
@@ -36,7 +36,7 @@ GiBUUToStdHep: utils
 utils_clean:
 	cd utils && $(MAKE) clean
 Neut2RooTracker_clean:
-	cd generators/neut/neut2rootracker && $(MAKE) clean
+	cd neut/neut2rootracker && $(MAKE) clean
 plotting_clean:
 	cd plotting && $(MAKE) clean
 ProcessRooTrackerToTransversityVariables_clean:

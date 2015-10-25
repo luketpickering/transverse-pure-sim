@@ -4,3 +4,6 @@
 [submodule "luke-contrib/gibuu"]
 	path = luke-contrib/gibuu
 	url = git@github.com:luketpickering/GiBUU-t2k-dev.git
+[submodule "luke-contrib/neut"]
+	path = luke-contrib/neut
+	url = git@github.com:luketpickering/NeutToRooTracker.git
