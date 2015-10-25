@@ -7,3 +7,6 @@
 [submodule "luke-contrib/NuTRAPAnalysis"]
 	path = luke-contrib/NuTRAPAnalysis
 	url = git@github.com:luketpickering/NuTRAPAnalysis.git
+[submodule "luke-contrib/plotting"]
+	path = luke-contrib/plotting
+	url = git@github.com:luketpickering/ROOTXMLPlot.git
