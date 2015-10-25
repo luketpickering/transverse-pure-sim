@@ -1,9 +1,9 @@
-[submodule "luke-contrib/utils"]
-	path = luke-contrib/utils
-	url = git@github.com:luketpickering/lukes-utils.git
 [submodule "luke-contrib/gibuu"]
 	path = luke-contrib/gibuu
 	url = git@github.com:luketpickering/GiBUU-t2k-dev.git
 [submodule "luke-contrib/neut"]
 	path = luke-contrib/neut
 	url = git@github.com:luketpickering/NeutToRooTracker.git
+[submodule "luke-contrib/NuTRAPAnalysis"]
+	path = luke-contrib/NuTRAPAnalysis
+	url = git@github.com:luketpickering/NuTRAPAnalysis.git
