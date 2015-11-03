@@ -9,4 +9,4 @@
 	url = git@github.com:luketpickering/NuTRAPAnalysis.git
 [submodule "luke-contrib/plotting"]
 	path = luke-contrib/plotting
-	url = git@github.com:luketpickering/ROOTXMLPlot.git
+	url = git@ursaminorbeta.org.uk:luketpickering/lukes-utils.git
